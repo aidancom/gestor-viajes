@@ -10,8 +10,8 @@ const Weather = () => {
       <h2 className='pl-3 py-3 font-bold text-[20px] md:text-2xl z-[999]'>El <span className="text-[#9487f5]">tiempo</span> en...</h2>
       <div className='lg:grid lg:grid-rows-[20%_80%]'>
         <div className='mx-3'>        
-            <select className='w-full border-2 border-[#D8B5C9] border-solid p-[3px]' onChange={(e) => setSelectValue(e.target.value)}>
-              <option disabled={true} selected={true}>Seleccione una ciudad para ver el tiempo actual</option>
+            <select className='w-full border-2 border-[#D8B5C9] border-solid p-[3px]' onChange={(e) => setSelectValue(e.target.value)} defaultValue={""}>
+              <option disabled={true} value="">Seleccione una ciudad para ver el tiempo actual</option>
               {data.map(city => {
                 return <option key={city.lat + city.lng} value={city.name}>{city.name}</option>
               })}
@@ -30,7 +30,7 @@ const Weather = () => {
               </div>
             </div>
             ) : (
-            <p>Sin información</p>
+            <p className='text-center'>Sin información</p>
           )}
         </div>
       </div>

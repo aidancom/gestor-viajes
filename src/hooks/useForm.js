@@ -58,12 +58,16 @@ export const useForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
+
+    // Aqui empezaria la validacion, englobaria todo el if (hacerlo en el useValidateForm)
+    
     if(existingKey) {
       const updatedTravel = travelsData.map(travel => travel.key === existingKey ? {...formData, key: existingKey} : travel)
       setTravelsData(updatedTravel)
       setExistingKey("")
     } else {
       const newObject = {...formData, key: uniqueKey()}
+      
       setTravelsData([...travelsData, newObject])
     }
     setFormData(initialTravelDataBase())

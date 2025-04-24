@@ -25,7 +25,7 @@ const Travels = ({ styledDivs, handleSubmit, formData, setFormData, existingKey 
             <fieldset className={styledFieldsets}>
               <label>Motivo del viaje*</label>
               <select required={true} className={styledInputs} value={travelReason} onChange={(e) => setFormData({...formData, general: {...formData.general, travelReason: e.target.value}})}>
-                <option disabled={true} value={""}>Selecciona un motivo</option>
+                <option disabled={true} value="">Selecciona un motivo</option>
                 <option value='negocios'>Negocios</option>
                 <option value='ocio'>Ocio</option>
                 <option value='vacaciones'>Vacaciones</option>
@@ -106,7 +106,7 @@ const Travels = ({ styledDivs, handleSubmit, formData, setFormData, existingKey 
             <fieldset className={styledFieldsets}>
               <label>Método de pago</label>
               <select className={styledInputs} value={travelPaymentMethod} onChange={(e) => setFormData({...formData, cash: {...formData.cash, travelPaymentMethod: e.target.value}})}>
-                <option disabled selected>Selecciona el método de pago</option>
+                <option disabled={true} value="">Selecciona el método de pago</option>
                 <option value='tarjeta'>Tarjeta de crédito</option>
                 <option value='transferencia'>Transferencia bancaria</option>
                 <option value='efectivo'>Efectivo</option>

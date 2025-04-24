@@ -26,7 +26,7 @@ const Panel = ({user}) => {
           </div>
           <AnimatePresence mode='wait'>
             <motion.div className='flex-1 mb-5' key={activePanel} initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} transition={{duration: 0.3}}>
-              {activePanel === 'dashboard' ? <Dashboard travelsData={travelsData}/> : activePanel === 'calendar' ? <Calendar/> : <Form handleSubmit={handleSubmit} formData={formData} setFormData={setFormData} existingKey={existingKey} travelsData={travelsData} handleEdit={handleEdit} handleDelete={handleDelete} />}
+              {activePanel === 'dashboard' ? <Dashboard travelsData={travelsData}/> : activePanel === 'calendar' ? <Calendar travelsData={travelsData}/> : <Form handleSubmit={handleSubmit} formData={formData} setFormData={setFormData} existingKey={existingKey} travelsData={travelsData} handleEdit={handleEdit} handleDelete={handleDelete} />}
             </motion.div>
           </AnimatePresence>
         </main>

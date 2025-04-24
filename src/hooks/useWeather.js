@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { cities } from "../db/cities"
-import { faCloud, faSun, faCloudRain, faSnowflake, faCloudShowersHeavy, faCloudBolt, faSmog } from '@fortawesome/free-solid-svg-icons'
+import { faCloud, faSun, faSnowflake, faCloudShowersHeavy, faCloudBolt, faSmog } from '@fortawesome/free-solid-svg-icons'
 
 export const useWeather = () => {
   const [data] = useState(cities)
