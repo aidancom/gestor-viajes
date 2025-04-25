@@ -11,10 +11,7 @@ export const useNextTravel = (travelsData) => {
 
   useEffect(() => {
     if (travelsData.lenght !== 0) {
-      const today = dateWithoutHours(new Date());
-      const futureTravels = travelsData.filter(item => dateWithoutHours(item?.general?.travelDepartureDate) >= today);
-      const sortedTravels = futureTravels.sort((a, b) => {return dateWithoutHours(a?.general?.travelDepartureDate) - dateWithoutHours(b?.general?.travelDepartureDate)})
-      console.log(sortedTravels[0])
+      const sortedTravels = travelsData.sort((dateA, dateB) => {return dateWithoutHours(dateA?.general?.travelDepartureDate) - dateWithoutHours(dateB?.general?.travelDepartureDate)})
       setNextTravel(sortedTravels[0]);
     }
   }, [travelsData]);

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useValidateForm } from "./useValidateForm"
 
 export const useForm = () => {
 
@@ -37,6 +38,7 @@ export const useForm = () => {
   const [travelsData, setTravelsData] = useState(localTravels)
   const [existingKey, setExistingKey] = useState("")
   const [formData, setFormData] = useState(initialTravelDataBase())
+  const { isValid } = useValidateForm(formData)
   
   useEffect(() => {
     localStorage.setItem('travels', JSON.stringify(travelsData))
@@ -58,19 +60,21 @@ export const useForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-
-    // Aqui empezaria la validacion, englobaria todo el if (hacerlo en el useValidateForm)
-    
-    if(existingKey) {
-      const updatedTravel = travelsData.map(travel => travel.key === existingKey ? {...formData, key: existingKey} : travel)
-      setTravelsData(updatedTravel)
-      setExistingKey("")
-    } else {
-      const newObject = {...formData, key: uniqueKey()}
-      
-      setTravelsData([...travelsData, newObject])
+   
+    if (isValid()) {
+      if(existingKey) {
+        console.log("Entrando")
+        const updatedTravel = travelsData.map(travel => travel.key === existingKey ? {...formData, key: existingKey} : travel)
+        setTravelsData(updatedTravel)
+        setExistingKey("")
+      } else {
+        const newObject = {...formData, key: uniqueKey()}
+        setTravelsData([...travelsData, newObject])
+      }
+      setFormData(initialTravelDataBase())
     }
-    setFormData(initialTravelDataBase())
+
+
   }
 
   return {

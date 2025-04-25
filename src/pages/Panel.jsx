@@ -7,8 +7,10 @@ import Form from '../components/Form'
 import { useForm } from '../hooks/useForm'
 
 const Panel = ({user}) => {
+  
   const [activePanel, setActivePanel] = useState('dashboard')
   const {handleSubmit, formData, setFormData, travelsData, handleEdit, handleDelete, existingKey} = useForm()
+  
 
   return (
     <div className='flex flex-col min-h-screen'>

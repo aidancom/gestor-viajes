@@ -4,7 +4,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 const Calendar = ({travelsData}) => {
 
-  const {localizer, currentView, eventsCalendar, navigate, setCurrentView, setNavigate} = useCalendar(travelsData)
+  const {localizer, currentView, eventsCalendar, navigate, setCurrentView, setNavigate, handleModalTravel} = useCalendar(travelsData)
 
   return (
     <div className="w-full h-[900px] flex items-center justify-center flex-col p-5 lg:h-full">
@@ -15,7 +15,8 @@ const Calendar = ({travelsData}) => {
         view={currentView} 
         onNavigate={(date) => {setNavigate(date)}} 
         onView={view => setCurrentView(view)} 
-        defaultView='month' localizer={localizer} 
+        defaultView='month' localizer={localizer}
+        onSelectEvent={handleModalTravel}
         events={eventsCalendar} 
         startAccessor="start" 
         endAccessor="end"

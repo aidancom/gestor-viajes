@@ -26,6 +26,10 @@ export const useCalendar = (travelsData) => {
   const [eventsCalendar, setEventCalendar] = useState([])
   const [navigate, setNavigate] = useState(new Date())
 
+  const handleModalTravel = () => {
+    alert("hola")
+  }
+
   useEffect(() => {
     const events = travelsData.map(travel => ({
       title: travel?.general?.travelDestination, 
@@ -42,6 +46,7 @@ export const useCalendar = (travelsData) => {
     eventsCalendar,
     navigate,
     setCurrentView,
-    setNavigate
+    setNavigate,
+    handleModalTravel
   }
 }
