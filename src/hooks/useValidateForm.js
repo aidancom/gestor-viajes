@@ -1,3 +1,4 @@
+import { toast } from "react-toastify"
 
 export const useValidateForm = (formData) => {
   
@@ -9,29 +10,21 @@ export const useValidateForm = (formData) => {
   }
 
   function isValid() {
+    const today = setHours(new Date());
 
-    const today = setHours(new Date())
     if (setHours(travelDepartureDate) < today) {
-      alert("Error: la fecha de salida no puede ser inferior a la actual");
-      return false;
-    } 
-
-    if (setHours(travelReturnDate) < setHours(travelDepartureDate)) {
-      alert("Error: la fecha de regreso no puede ser inferior a la de salida");
-      return false;
-    } 
-
-    if (setHours(travelCheckIn) < setHours(travelDepartureDate)) {
-      alert("Error: la fecha de checkin no puede ser inferior a la fecha de salida");
-      return false;
-    } 
-
-    if (setHours(travelCheckOut) < setHours(travelCheckIn) || setHours(travelCheckOut) > setHours(travelReturnDate)) {
-      alert("Error: la fecha de checkout debe ser superior a la de checkin ni a la de retorno");
-      return false;
+      return { valid: false, message: "La fecha de salida no puede ser inferior a la actual." };
     }
-
-    return true;
+    if (setHours(travelReturnDate) < setHours(travelDepartureDate)) {
+      return { valid: false, message: "La fecha de regreso no puede ser inferior a la de salida." };
+    }
+    if (setHours(travelCheckIn) < setHours(travelDepartureDate)) {
+      return { valid: false, message: "La fecha de check-in no puede ser inferior a la de salida." };
+    }
+    if (setHours(travelCheckOut) < setHours(travelCheckIn) || setHours(travelCheckOut) > setHours(travelReturnDate)) {
+      return { valid: false, message: "La fecha de checkout debe ser entre check-in y regreso." };
+    }
+    return { valid: true };
   }
   
   return {

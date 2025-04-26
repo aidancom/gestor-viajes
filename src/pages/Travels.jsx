@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Travels = ({ styledDivs, handleSubmit, formData, setFormData, existingKey }) => {
+const Travels = ({ styledDivs, handleSubmit, formData, setFormData, existingKey, valido }) => {
   const styledInputs = 'border-2 border-[#D8B5C9] border-solid p-[2px] mt-1 h-full'
   const styledFieldsets = 'flex flex-col min-w-[250px] pt-[10px] flex-1'
   const styledDivsChilds = 'flex flex-wrap gap-4 md:justify-between'

@@ -5,6 +5,8 @@ import Panel from './pages/Panel'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { useAuth } from './hooks/useAuth'
 import { AnimatePresence, motion } from 'framer-motion'
+import { ToastContainer } from 'react-toastify'
+import { Zoom } from 'react-toastify'
 
 const App = () => {
   const {handleSubmit, password, setPassword, setEmail, user, setLogged, logged, setUser, handleRegister, handleLogin} = useAuth()
@@ -19,6 +21,13 @@ const App = () => {
             <header className='flex justify-end p-5 fixed'>
               <a className='group border-2 border-solid pt-[5px] pr-[15px] pb-[5px] pl-[15px] border-[#9487f5] bg-[#9487f5] rounded-[10px] hover:bg-[#fff] hover:shadow-[0_6px_0_0_#fff] hover:translate-y-[-7px] transition-all duration-200 ease-linear cursor-pointer no-underline text-[#fff] hover:text-[#222]' onClick={() => setLogged(false)}>Salir</a>
             </header>
+            <ToastContainer 
+              transition={Zoom} 
+              autoClose={1500} 
+              pauseOnHover={false}
+              pauseOnFocusLoss={false}
+              newestOnTop={true}
+            />
             <Panel user={user}/>
           </motion.div>
         </AnimatePresence>
@@ -37,6 +46,7 @@ const App = () => {
               </Route>
           </Routes>
         </AnimatePresence>
+        
       }
     </div>
   )

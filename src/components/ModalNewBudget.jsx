@@ -2,6 +2,7 @@ import {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
+import { toast } from 'react-toastify'
 
 const ModalNewBudget = ({budget, setBudget, setModalOpen}) => {
 
@@ -10,15 +11,20 @@ const ModalNewBudget = ({budget, setBudget, setModalOpen}) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (inputBudget < 0) {
-      alert('El presupuesto no puede ser negativo')
-    } else if (isNaN(inputBudget)) {
-      alert('El presupuesto debe ser un número')
-    } else if (inputBudget === 0 || inputBudget === '') {
-      alert('El presupuesto no puede estar vacio ni ser 0')
-    } else {
+      toast.error('El presupuesto no puede ser negativo')
+      return
+    } 
+    if (isNaN(inputBudget)) {
+      toast.error('El presupuesto debe ser un número')
+      return
+    } 
+    if (inputBudget === '0' || inputBudget === '') {
+      toast.error('El presupuesto no puede estar vacio ni ser 0')
+      return
+    } 
       setBudget(inputBudget)
       setModalOpen(false)
-    }
+      toast.success("Presupuesto cambiado con éxito")
   }
   
   return (

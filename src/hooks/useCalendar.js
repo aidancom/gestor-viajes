@@ -25,16 +25,22 @@ export const useCalendar = (travelsData) => {
   const [currentView, setCurrentView] = useState('month')
   const [eventsCalendar, setEventCalendar] = useState([])
   const [navigate, setNavigate] = useState(new Date())
+  const [modal, setModal] = useState(false)
+  const [selectTravel, setSelectTravel] = useState({})
 
-  const handleModalTravel = () => {
-    alert("hola")
+  const handleModalTravel = (event) => {
+    const selectedTravel = travelsData.filter(travel => travel.key === event.key)
+    setSelectTravel(selectedTravel[0])
+    setModal(true)
   }
 
   useEffect(() => {
     const events = travelsData.map(travel => ({
+      key: travel?.key,
       title: travel?.general?.travelDestination, 
       start: new Date(travel?.general?.travelDepartureDate),
-      end: new Date(travel?.general?.travelReturnDate)
+      end: new Date(travel?.general?.travelReturnDate),
+      color: "#9487F5"
     }))
     setEventCalendar(events)
   }, [travelsData])
@@ -45,8 +51,11 @@ export const useCalendar = (travelsData) => {
     currentView,
     eventsCalendar,
     navigate,
+    modal,
+    selectTravel,
     setCurrentView,
     setNavigate,
-    handleModalTravel
+    handleModalTravel,
+    setModal
   }
 }
