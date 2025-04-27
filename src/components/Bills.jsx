@@ -13,8 +13,8 @@ const Bills = ({travelsData}) => {
         <div className='flex flex-col'>
         <h2 className='pl-3 py-3 font-bold text-[20px] md:text-2xl z-[999]'>Presupuesto y <span className="text-[#9487f5]">gastos</span> totales</h2>
           <div className='flex h-full items-center justify-center flex-col xl:flex-row'>
-            <div className='mr-5'>
-              <CircularProgressbar className='w-[100px] font-medium' value={percent} text={parseInt(percent) > 100 ? '100%' : `${percent}%` } styles={buildStyles({ pathColor: '#9487f5', textColor: '#222222', })}></CircularProgressbar>
+            <div className='mr-5 w-[100px]'>
+              <CircularProgressbar className='font-medium' value={percent} text={parseInt(percent) > 100 ? '100%' : isNaN(percent) ? '0%' : `${percent}%`} styles={buildStyles({ pathColor: '#9487f5', textColor: '#222222', })}></CircularProgressbar>
             </div>
             <div>
               <p>Total costo estimado viajes: {totalCosts}€</p>
