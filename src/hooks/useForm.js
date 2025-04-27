@@ -4,7 +4,7 @@ import { toast } from "react-toastify"
 
 export const useForm = () => {
 
-  const localTravels = () => JSON.parse(localStorage.getItem('travels'))
+  const localTravels = () => JSON.parse(localStorage.getItem('travels')) || []
 
   const initialTravelDataBase = () => {
     return {

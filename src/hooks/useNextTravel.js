@@ -11,7 +11,7 @@ export const useNextTravel = (travelsData) => {
   };
 
   useEffect(() => {
-    if (travelsData.lenght !== 0) {
+    if (travelsData.length !== 0) {
       const sortedTravels = travelsData.sort((dateA, dateB) => {return dateWithoutHours(dateA?.general?.travelDepartureDate) - dateWithoutHours(dateB?.general?.travelDepartureDate)})
       setNextTravel(sortedTravels[0]);
     }
