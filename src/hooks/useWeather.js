@@ -6,6 +6,7 @@ export const useWeather = () => {
   const [data] = useState(cities)
   const [selectedCity, setSelectedCity] = useState({})
   const [selectValue, setSelectValue] = useState('')
+  const [loader, setLoader] = useState(false)
   const img = {
     'Clear': [faSun, 'Despejado'],
     'Clouds': [faCloud, 'Nublado'],
@@ -28,9 +29,14 @@ export const useWeather = () => {
           setSelectedCity(response)
         } catch(e) {
           alert(`Error: ${e}`)
+        } finally {
+          setLoader(false)
         }
       }
-      cityWeatherData()
+      setLoader(true)
+      setTimeout(() => {
+        cityWeatherData()
+      }, 2000)
     }
   }, [selectValue])
 
@@ -44,6 +50,7 @@ export const useWeather = () => {
     setSelectValue,
     conditionWeatherImg,
     conditionWeatherText,
-    img
+    img,
+    loader
   }
 }

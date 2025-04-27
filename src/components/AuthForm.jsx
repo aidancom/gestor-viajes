@@ -17,7 +17,7 @@ const AuthForm = ({mode, user, setUser, setPassword, setEmail, email, password, 
               <input className={styleInputs} type="text" id="username" name="username" placeholder='Escribe tu usuario' value={user} onChange={(e) => setUser(e.target.value)} />
             </div>
             
-            <div className={styleDivInputs + ' relative'}>
+            <div className={`${styleDivInputs} relative`}>
               <label htmlFor="password">Contraseña</label>
               <FontAwesomeIcon className='absolute top-[53%] left-[90%] bg-white cursor-pointer' icon={visible ? faEye : faEyeSlash} onMouseUp={() => setVisible(false)} onMouseDown={() => setVisible(true)} />
               <input className={styleInputs} type={visible ? 'text' : 'password'} id="password" name="password" placeholder='Escribe tu contraseña' value={password} onChange={(e) => setPassword(e.target.value)} />  

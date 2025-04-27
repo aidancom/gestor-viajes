@@ -21,13 +21,7 @@ const App = () => {
             <header className='flex justify-end p-5 fixed'>
               <a className='group border-2 border-solid pt-[5px] pr-[15px] pb-[5px] pl-[15px] border-[#9487f5] bg-[#9487f5] rounded-[10px] hover:bg-[#fff] hover:shadow-[0_6px_0_0_#fff] hover:translate-y-[-7px] transition-all duration-200 ease-linear cursor-pointer no-underline text-[#fff] hover:text-[#222]' onClick={() => setLogged(false)}>Salir</a>
             </header>
-            <ToastContainer 
-              transition={Zoom} 
-              autoClose={1500} 
-              pauseOnHover={false}
-              pauseOnFocusLoss={false}
-              newestOnTop={true}
-            />
+
             <Panel user={user}/>
           </motion.div>
         </AnimatePresence>
@@ -48,6 +42,13 @@ const App = () => {
         </AnimatePresence>
         
       }
+      <ToastContainer 
+        transition={Zoom} 
+        autoClose={1500} 
+        pauseOnHover={false}
+        pauseOnFocusLoss={false}
+        newestOnTop={true}
+      />
     </div>
   )
 }

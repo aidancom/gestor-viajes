@@ -3,10 +3,11 @@ import { useWeather } from '../hooks/useWeather'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Weather = () => {
-  const {data, selectedCity, setSelectValue, conditionWeatherImg, conditionWeatherText} = useWeather()
-
+  const {data, selectedCity, setSelectValue, conditionWeatherImg, conditionWeatherText, loader} = useWeather()
+  const styledDivLoader = "absolute w-full h-full flex items-center justify-center bg-[#ffffffcc] z-[999999] rounded-[10px]"
   return (
-    <div className="h-full lg:grid lg:grid-rows-[20%_80%]">
+    <div className="h-full lg:grid lg:grid-rows-[20%_80%] relative">
+      <div className={loader ? styledDivLoader : 'hidden'}><span class="loader_1"></span></div>
       <h2 className='pl-3 py-3 font-bold text-[20px] md:text-2xl z-[999]'>El <span className="text-[#9487f5]">tiempo</span> en...</h2>
       <div className='lg:grid lg:grid-rows-[20%_80%]'>
         <div className='mx-3'>        

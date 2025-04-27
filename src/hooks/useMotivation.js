@@ -5,14 +5,9 @@ export const useMotivation = () => {
   const [data] = useState(sentences)
   const [randomSentence, setRandomSentence] = useState({})
 
-  useEffect(() => {
-    refreshSentence()
-  }, [])
+  useEffect(() => refreshSentence(), [])
 
-  const refreshSentence = () => {
-    const newSentence = Math.floor(Math.random() * data.length)
-    setRandomSentence(data[newSentence])
-  }
+  const refreshSentence = () => setRandomSentence(data[Math.floor(Math.random() * data.length)])
 
   return {
     refreshSentence,

@@ -1,21 +1,11 @@
 import { useState, useEffect } from "react"
+import { toast } from "react-toastify"
 
 export const useAuth = () => {
 
-  const setLoginState = () => {
-    const storedLogin = localStorage.getItem('login')
-    return storedLogin ? JSON.parse(storedLogin) : false
-  }
-
-  const setUserState = () => {
-    const storedUser = JSON.parse(localStorage.getItem('userinfo'))
-    return storedUser?.user || ''
-  }
-
-  const setPasswordState = () => {
-    const storedUser = JSON.parse(localStorage.getItem('userinfo'))
-    return storedUser?.pass || ''
-  }
+  const setLoginState = () => localStorage.getItem('login') ? JSON.parse(localStorage.getItem('login')) : false
+  const setUserState = () => JSON.parse(localStorage.getItem('userinfo'))?.user || ''
+  const setPasswordState = () => JSON.parse(localStorage.getItem('userinfo'))?.pass || ''
 
   const [user, setUser] = useState(setUserState)
   const [password, setPassword] = useState(setPasswordState)
@@ -24,9 +14,7 @@ export const useAuth = () => {
   const [isRegister, setIsRegister] = useState(false)
   const [newUser, setnewUser] = useState({})
 
-  useEffect(() => {
-    localStorage.setItem('login', JSON.stringify(logged))
-  }, [logged])
+  useEffect(() => localStorage.setItem('login', JSON.stringify(logged)), [logged])
 
   useEffect(() => {
     const userInfo = {"user": user, "pass": password}
@@ -37,29 +25,28 @@ export const useAuth = () => {
   const handleRegister = (e) => {
     e.preventDefault()
     if (user === '' || password === '' || email === '') {
-      alert("Error al registrar: Campos vacíos")
-    } else {
-      const newUserName = {
-        "nombre": user, 
-        "contrasenya": password,
-        "email": email
-      }
-      setnewUser(newUserName)
-      setLogged(true)
-      window.history.replaceState(null, '', '/')
+      toast.error("Error al registrar: Campos vacíos")
+      return
+    } 
+    const newUserName = {
+      "nombre": user, 
+      "contrasenya": password,
+      "email": email
     }
+    setnewUser(newUserName)
+    setLogged(true)
+    window.history.replaceState(null, '', '/')
   }
 
   const handleLogin = (e) => {
     e.preventDefault()
     if (user === '' || password === '') {
-      alert("Error al loggearse: Campos vacíos")
-    } else {
-      setLogged(true)
-      window.history.replaceState(null, '', '/')
-    }
+      toast.error("Error al loggearse: Campos vacíos")
+      return
+    } 
+    setLogged(true)
+    window.history.replaceState(null, '', '/')
   } 
-
 
   return {
     setPassword,

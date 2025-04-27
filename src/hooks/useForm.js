@@ -4,9 +4,7 @@ import { toast } from "react-toastify"
 
 export const useForm = () => {
 
-  const localTravels = () => {
-    return JSON.parse(localStorage.getItem('travels'))
-  }
+  const localTravels = () => JSON.parse(localStorage.getItem('travels'))
 
   const initialTravelDataBase = () => {
     return {
@@ -39,18 +37,14 @@ export const useForm = () => {
   const [travelsData, setTravelsData] = useState(localTravels)
   const [existingKey, setExistingKey] = useState("")
   const [formData, setFormData] = useState(initialTravelDataBase())
+  const [loader, setLoader] = useState(false)
   const { isValid } = useValidateForm(formData)
-  const [message, setMessage] = useState("")
 
   const valido = isValid()
   
-  useEffect(() => {
-    localStorage.setItem('travels', JSON.stringify(travelsData))
-  }, [travelsData])
+  useEffect(() => localStorage.setItem('travels', JSON.stringify(travelsData)), [travelsData])
 
-  const uniqueKey = () => {
-    return Date.now().toString(36) + Math.random().toString(36).substring(2)
-  }
+  const uniqueKey = () =>  Date.now().toString(36) + Math.random().toString(36).substring(2)
 
   const handleEdit = (data) => {  
     setExistingKey(data.key)
@@ -66,22 +60,28 @@ export const useForm = () => {
   const handleSubmit = e => {
     e.preventDefault()
     const {valid, message} = isValid()
+    setLoader(true)
+    
+    setTimeout(() => {
+      if (!valid) {
+        toast.error(message)
+        setLoader(false)
+        return
+      }
+      if(existingKey) {
+        const updatedTravel = travelsData.map(travel => travel.key === existingKey ? {...formData, key: existingKey} : travel)
+        setTravelsData(updatedTravel)
+        setExistingKey("")
+        toast.success("Viaje editado con éxito")
+      } else {
+        const newObject = {...formData, key: uniqueKey()}
+        setTravelsData([...travelsData, newObject])
+        toast.success("Viaje agregado con éxito")
+      }
+      setLoader(false)
+      setFormData(initialTravelDataBase())
+    }, 2000)
 
-    if (!valid) {
-      toast.error(message)
-      return
-    }
-    if(existingKey) {
-      const updatedTravel = travelsData.map(travel => travel.key === existingKey ? {...formData, key: existingKey} : travel)
-      setTravelsData(updatedTravel)
-      setExistingKey("")
-      toast.success("Viaje editado con éxito")
-    } else {
-      const newObject = {...formData, key: uniqueKey()}
-      setTravelsData([...travelsData, newObject])
-      toast.success("Viaje agregado con éxito")
-    }
-    setFormData(initialTravelDataBase())
   }
 
   return {
@@ -92,6 +92,7 @@ export const useForm = () => {
     travelsData,
     handleDelete,
     existingKey,
-    valido
+    valido,
+    loader
   }
 }

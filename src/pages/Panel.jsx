@@ -9,7 +9,8 @@ import { useForm } from '../hooks/useForm'
 const Panel = ({user}) => {
   
   const [activePanel, setActivePanel] = useState('dashboard')
-  const {handleSubmit, formData, setFormData, travelsData, handleEdit, handleDelete, existingKey, valido} = useForm()
+  const {handleSubmit, formData, setFormData, travelsData, handleEdit, handleDelete, existingKey, valido, loader} = useForm()
+  const formProps = {valido, handleSubmit, formData, setFormData, existingKey, loader, travelsData, handleEdit, handleDelete}
   
 
   return (
@@ -28,7 +29,7 @@ const Panel = ({user}) => {
           </div>
           <AnimatePresence mode='wait'>
             <motion.div className='flex-1 mb-5' key={activePanel} initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} transition={{duration: 0.3}}>
-              {activePanel === 'dashboard' ? <Dashboard travelsData={travelsData}/> : activePanel === 'calendar' ? <Calendar travelsData={travelsData}/> : <Form valido={valido} handleSubmit={handleSubmit} formData={formData} setFormData={setFormData} existingKey={existingKey} travelsData={travelsData} handleEdit={handleEdit} handleDelete={handleDelete} />}
+              {activePanel === 'dashboard' ? <Dashboard travelsData={travelsData}/> : activePanel === 'calendar' ? <Calendar travelsData={travelsData}/> : <Form {...formProps}/>}
             </motion.div>
           </AnimatePresence>
         </main>

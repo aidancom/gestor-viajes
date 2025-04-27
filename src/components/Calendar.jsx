@@ -6,7 +6,7 @@ import { AnimatePresence } from "framer-motion"
 
 const Calendar = ({travelsData}) => {
 
-  const {localizer, currentView, eventsCalendar, navigate, setCurrentView, setNavigate, handleModalTravel, modal, selectTravel, setModal, colors} = useCalendar(travelsData)
+  const {localizer, currentView, eventsCalendar, navigate, setCurrentView, setNavigate, handleModalTravel, modal, selectTravel, setModal} = useCalendar(travelsData)
 
   return (
     <>

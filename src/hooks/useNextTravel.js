@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const useNextTravel = (travelsData) => {
+  
   const [nextTravel, setNextTravel] = useState(null);
 
   const dateWithoutHours = (date) => {

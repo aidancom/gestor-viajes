@@ -7,7 +7,6 @@ import es from 'date-fns/locale/es'
 import { useEffect, useState } from 'react'
 
 
-
 export const useCalendar = (travelsData) => {
 
   const locales = {

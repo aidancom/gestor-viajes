@@ -1,17 +1,13 @@
-import { toast } from "react-toastify"
 
 export const useValidateForm = (formData) => {
   
   const {travelDepartureDate, travelReturnDate} = formData.general
   const {travelCheckIn, travelCheckOut} = formData.accommodation
 
-  function setHours(date) {
-    return new Date(date).setHours(0,0,0,0)
-  }
+  const setHours = date => new Date(date).setHours(0,0,0,0)
 
   function isValid() {
     const today = setHours(new Date());
-
     if (setHours(travelDepartureDate) < today) {
       return { valid: false, message: "La fecha de salida no puede ser inferior a la actual." };
     }
@@ -26,7 +22,7 @@ export const useValidateForm = (formData) => {
     }
     return { valid: true };
   }
-  
+
   return {
     isValid
   }

@@ -1,16 +1,18 @@
 import React from 'react'
 
-const Travels = ({ styledDivs, handleSubmit, formData, setFormData, existingKey, valido }) => {
+const Travels = ({ styledDivs, handleSubmit, formData, setFormData, existingKey, loader }) => {
   const styledInputs = 'border-2 border-[#D8B5C9] border-solid p-[2px] mt-1 h-full'
   const styledFieldsets = 'flex flex-col min-w-[250px] pt-[10px] flex-1'
   const styledDivsChilds = 'flex flex-wrap gap-4 md:justify-between'
   const styledH3 = 'font-medium'
+  const styledDivLoader = "absolute w-full h-full flex items-center justify-center bg-[#ffffffcc] z-[999999] rounded-[10px]"
   const { travelName, travelReason,  travelDepartureDate, travelReturnDate, travelDestination, travelDeparturePlace} = formData.general
   const { travelHotelName, travelHotelDirection, travelHotelPhone, travelCheckIn, travelCheckOut, travelHotelRoomType} = formData.accommodation
   const { travelCost, travelBills, travelPaymentMethod} = formData.cash
 
   return (
-    <div className={styledDivs}>
+    <div className={`${styledDivs} relative`}>
+      <div className={loader ? styledDivLoader : `hidden`}><span class="loader_1"></span></div>
       <h2 className='pl-3 py-3 font-bold text-[20px] md:text-2xl z-[999]'>
         {!existingKey ?  <>Agregar <span className='text-[#9487F5]'>nuevo</span> viaje</> : <>Editar viaje</>}
       </h2>
