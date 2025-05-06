@@ -16,7 +16,7 @@ Una aplicación que simula un gestor de viajes sencillo
 - __React Circular Progressbar__ para mostrar el restante del presupuesto en una barra de progresión
 ## Instalación
 ```
-git clone https://github.com/tu-usuario/gestor-viajes.git  
+git clone https://github.com/aidancom/gestor-viajes.git  
 cd gestor-viajes
 npm i
 npm run dev
